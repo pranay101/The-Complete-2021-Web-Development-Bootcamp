@@ -1,15 +1,28 @@
 body {
-  margin: 0px !important;
-  padding: 0px !important;
+  margin: 0;
   text-align: center;
+  color: #40514e;
 }
 h1 {
+  color: #66bfbf;
   margin-top: 50px auto 0 auto;
-  font-family: 'Dancing Script', cursive;
-  font-size: 5rem; 
+  font-family: "Dancing Script", cursive;
+  font-size: 5rem;
 }
-p{
+h2 {
+  color: #66bfbf;
   font-size: 2.5rem;
+}
+
+h3 {
+  color: #66bfbf;
+}
+p {
+  line-height: 2;
+  font-weight: normal;
+  color:#1f1f20;
+  font-family: 'Roboto', sans-serif;
+  font-weight: normal;
 }
 
 .top-container {
@@ -18,22 +31,99 @@ p{
   padding-top: 100px;
 }
 
-.middle-container {
-  
+.middle-container{
+  margin: 100px auto;
+}
+.profile img {
+  width: 25%;
+}
+
+.intro-text{
+  width: 30%;
+  margin: 50px auto;
 }
 
 .bottam-container {
+  margin: 100px auto 100px auto;
+  padding: 10px;
+}
+.bottam-container p {
+margin: 30px auto 30px auto;
 }
 .top-cloud {
   position: absolute;
-  top:50px;
-  right:300px
+  top: 50px;
+  right: 300px;
 }
-.circular{
+.circular {
   border-radius: 100%;
 }
 .bottam-cloud {
   position: absolute;
   left: 300px;
   bottom: 300px;
+}
+
+.skill-row {
+  width: 50%;
+  margin: 100px auto 100px auto;
+  text-align: left;
+  line-height: 2;
+}
+.skill-row p {
+}
+.computer {
+  width: 25%;
+  float: left;
+  margin-right: 30px;
+}
+.chillies {
+  width: 25%;
+  float: right;
+  margin-left: 30px;
+}
+hr {
+  width: 10%;
+  border-style: dotted none none none;
+  color: grey;
+  border-width: 8px;
+  margin: 100px auto;
+}
+
+.footer {
+  padding: 50px;
+  background-color: #d4ecdd;
+}
+
+.footer-link {
+  color: #66bfbf;
+  margin: 10px 20px;
+  font-size: 1.2rem;
+  font-family: sans-serif;
+  text-decoration: none;
+}
+
+.footer-link:hover{
+  color: #eaf6f6
+}
+
+.btn{
+  background-color: #66bfbf;
+  color: white;
+  font-size: 1.1rem;
+  padding: 15px;
+  border-radius: 10px;
+}
+
+.btn:hover{
+  background-color: #0d0d30;
+}
+.contact-message{
+  width: 30%;
+  margin: 100px auto;
+}
+.copyright{
+  padding: 20px 0;
+  color: #eaf6f6
+
 }
