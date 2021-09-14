@@ -1,6 +1,8 @@
 /* font-family: 'Montserrat', sans-serif;
 font-family: 'Ubuntu', sans-serif; */
 
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap");
+
 body {
   font-family: "Montserrat", sans-serif;
 }
@@ -10,14 +12,19 @@ h1 {
   line-height: 1.5;
   font-weight: bold;
 }
-
+h2 {
+  font-family: "Montserrat", sans-serif;
+  font-size: 3rem;
+  line-height: 1.5;
+  font-weight: bolder;
+}
 h3 {
   font-size: 1.5rem;
   font-family: "Montserrat";
-  font-weight: bolder;
+  font-weight: 700;
 }
 
-p{
+p {
   color: #8f8f8f;
 }
 .item-center {
@@ -28,6 +35,7 @@ p{
 #title {
   background-color: #ff4c68;
   color: #fff;
+  padding: 5% 15%;
 }
 
 .font-white {
@@ -41,7 +49,7 @@ p{
   padding: 3px;
 }
 .title-content {
-  margin: 10% auto;
+  padding : 10% auto;
 }
 
 /* Navigation bar */
@@ -68,15 +76,21 @@ p{
 /* title image */
 
 .title-image {
-  width: 60%;
+  max-width: 20%;
   transform: rotate(25deg);
+  position: absolute;
+  top: 30%;
+  right: 26%;
 }
 
-F
 /* features */
-#features{
-  background-color: #ff4c68 !important;
-  margin: 8% 25% ;
+
+#features {
+  margin: 0;
+  padding: 8% 15%;
+  background-color:#fff;
+  position: relative;
+  z-index: 1;
 }
 
 #features i {
@@ -87,4 +101,112 @@ F
 
 #features i:hover {
   color: #ff4c68;
+}
+
+/* testimonials */
+
+#testimonials {
+  
+  text-align: center;
+  background-color: #ef8172;
+  color: #fff;
+}
+
+.testimonials-image {
+  width: 10%;
+  border-radius: 100%;
+  margin: 20px;
+}
+
+.carousel-item{
+  padding: 8% 15%;
+}
+
+/* press  */
+#press {
+  background-color: #ef8172;
+  text-align: center;
+  padding-bottom: 3%;
+}
+
+.press-logo {
+  width: 15%;
+  margin: 20px 20px 50px;
+}
+
+/* pricing */
+
+.margin-5-percent {
+  margin: 5%;
+}
+
+#pricing {
+  padding: 10% 0;
+  text-align: center;
+}
+
+.pricing-col {
+  padding: 3% 2%;
+}
+
+
+
+/* call to action */
+#cta{
+  background-color:#ff4c68;
+  padding: 7% 0;
+  color:#fff;
+  text-align: center;
+}
+#cta h3{
+  width: 70%;
+  font-size: 4rem;
+  padding: 4% 0;
+  line-height: 1.5;
+ 
+  margin-left: auto;
+  margin-right: auto;
+}
+#cta button{
+  margin:0 1%;
+}
+
+
+#footer{
+text-align: center;
+color: gray;
+padding: 7% 0;
+}
+
+#footer i{
+  font-size: 1.5rem;
+  margin: 10px;
+  color: gray;
+}
+
+
+
+@media (max-width: 1028px) {
+  #title{
+    text-align: center;
+  }
+  .title-image{
+    position: static;
+    transform: rotate(0);
+    max-width: 60%;
+
+  }
+  #testimonials h2{
+    font-size: 2rem;
+  }
+  #cta h3{
+    width: 80%;
+    font-size: 2.5rem;
+    padding: 4% 0;
+    line-height: 1.5;
+   
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
 }
