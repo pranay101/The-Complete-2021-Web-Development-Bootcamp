@@ -32,8 +32,16 @@ p {
   margin-right: auto;
 }
 
-#title {
+/* Sections */
+
+.white-section{
+  background-color: #fff;
+}
+.colored-section{
   background-color: #ff4c68;
+}
+
+#title {
   color: #fff;
   padding: 5% 15%;
 }
@@ -88,7 +96,6 @@ p {
 #features {
   margin: 0;
   padding: 8% 15%;
-  background-color:#fff;
   position: relative;
   z-index: 1;
 }
@@ -106,9 +113,8 @@ p {
 /* testimonials */
 
 #testimonials {
-  
-  text-align: center;
   background-color: #ef8172;
+  text-align: center;
   color: #fff;
 }
 
@@ -153,7 +159,7 @@ p {
 
 /* call to action */
 #cta{
-  background-color:#ff4c68;
+  background-color: #ef8172;
   padding: 7% 0;
   color:#fff;
   text-align: center;
