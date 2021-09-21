@@ -1,0 +1,17 @@
+{
+  "name": "my-express-server",
+  "version": "1.0.0",
+  "description": "first web server",
+  "main": "server.js",
+  "scripts": {
+    "test": "node server.js"
+  },
+  "keywords": [
+    "server"
+  ],
+  "author": "pranay prajapati",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
