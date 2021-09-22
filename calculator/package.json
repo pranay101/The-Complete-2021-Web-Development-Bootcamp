@@ -1,0 +1,17 @@
+{
+  "name": "addulator",
+  "version": "1.0.0",
+  "description": "simple calculator that performs addition",
+  "main": "calculator.js",
+  "scripts": {
+    "test": "nodemon calculator.js"
+  },
+  "keywords": [
+    "server"
+  ],
+  "author": "pranay prajapati",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
