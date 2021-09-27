@@ -10,7 +10,7 @@
   </head>
   <body>
     <div class="box" id="heading">
-      <h1><%= kindOfday %></h1>
+      <h1><%= listName %></h1>
     </div>
     <div class="box">
         <% item.forEach(element => { %>
@@ -22,7 +22,7 @@
 
       <form class="item" action="/" method="post">
         <input type="text" name="task" id="" placeholder="Enter new Task" autocomplete="off">
-        <button type="submit">+</button>
+        <button type="submit" name='list' value=<%= listName %>>+</button>
       </form>
     </div>
 

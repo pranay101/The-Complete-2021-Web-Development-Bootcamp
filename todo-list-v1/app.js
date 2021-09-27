@@ -6,15 +6,16 @@ const { urlencoded } = require("body-parser");
 const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.set("view engine", "ejs");
-app.use(express.static(__dirname + '/public'));
+app.use(express.static(__dirname + "/public"));
 
 app.listen(process.env.PORT || 3000, () => {
   console.log("Server running at port 3000");
 });
 
-
 // Global varibales
-var items = [];
+let items = [];
+let workList = [];
+
 app.get("/", (req, res) => {
   var today = new Date();
   var options = {
@@ -24,11 +25,20 @@ app.get("/", (req, res) => {
   };
 
   var day = today.toLocaleDateString("en-US", options);
-  res.render("list", { kindOfday: day, item : items });
+  res.render("list", { listName: day, item: items });
 });
 
 app.post("/", (req, res) => {
   var newItem = req.body.task;
-  items.push(newItem)
-  res.redirect("/")
+  if (req.body.list === "Work") {
+    workList.push(newItem);
+    res.redirect("/work");
+  } else {
+    items.push(newItem);
+    res.redirect("/");
+  }
+});
+
+app.get("/work", (req,res) => {
+  res.render("list", { listName: "Work", item: workList });
 });
