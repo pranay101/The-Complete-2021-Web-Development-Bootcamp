@@ -4,20 +4,30 @@ const ejs = require("ejs");
 const { urlencoded } = require("body-parser");
 
 const app = express();
-app.use(express.urlencoded({extended:true}))
+app.use(express.urlencoded({ extended: true }));
 app.set("view engine", "ejs");
 
 app.listen(process.env.PORT || 3000, () => {
   console.log("Server running at port 3000");
 });
 
+
+// Global varibales
+var items = [];
 app.get("/", (req, res) => {
-  console.log("rendered index");
-  res.render("index");
+  var today = new Date();
+  var options = {
+    weekday: "long",
+    day: "numeric",
+    month: "long",
+  };
+
+  var day = today.toLocaleDateString("en-US", options);
+  res.render("list", { kindOfday: day, item : items });
 });
 
 app.post("/", (req, res) => {
-  console.log("rendered greet");
-  console.log(req.body.name);
-  res.render("greet", { name: req.body.name });
+  var newItem = req.body.task;
+  items.push(newItem)
+  res.redirect("/")
 });
