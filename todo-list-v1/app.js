@@ -18,7 +18,7 @@ let workList = [];
 
 app.get("/", (req, res) => {
   let day = date.getDate();
-  res.render("list", { listName: day, item: items });
+  res.render("list", { listName: day, item: items }); 
 });
 
 app.post("/", (req, res) => {

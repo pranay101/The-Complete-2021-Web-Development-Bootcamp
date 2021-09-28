@@ -1,6 +1,6 @@
 exports.getDate = function () {
-  var today = new Date();
-  var options = {
+  const today = new Date();
+  const options = {
     weekday: "long",
     day: "numeric",
     month: "long",

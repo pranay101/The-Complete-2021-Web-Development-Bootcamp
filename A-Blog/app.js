@@ -12,7 +12,7 @@ const app = express();
 
 app.set('view engine', 'ejs');
 
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(express.urlencoded({extended: true}));
 app.use(express.static("public"));
 
 
@@ -23,7 +23,22 @@ app.use(express.static("public"));
 
 
 
+app.get("/",(req,res)=>{
+  res.render("home",{title: "Home" , p_text : homeStartingContent})
+})
 
+app.get("/about",(req,res)=>{
+  res.render("home",{title: "About" , p_text : aboutContent})
+})
+
+
+app.get("/contact",(req,res)=>{
+  res.render("home",{title: "Contact" , p_text : contactContent})
+})
+
+app.get("/compose",(req,res)=>{
+  res.render("home",{title: "Contact" , p_text : contactContent})
+})
 
 
 
