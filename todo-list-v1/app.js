@@ -1,14 +1,14 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const ejs = require("ejs");
-const { urlencoded } = require("body-parser");
+const date = require(__dirname + "/date.js")
 
 const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
 
-app.listen(process.env.PORT || 3000, () => {
+app.listen(process.env.PORT || "3000", () => {
   console.log("Server running at port 3000");
 });
 
@@ -17,14 +17,7 @@ let items = [];
 let workList = [];
 
 app.get("/", (req, res) => {
-  var today = new Date();
-  var options = {
-    weekday: "long",
-    day: "numeric",
-    month: "long",
-  };
-
-  var day = today.toLocaleDateString("en-US", options);
+  let day = date.getDate();
   res.render("list", { listName: day, item: items });
 });
 
