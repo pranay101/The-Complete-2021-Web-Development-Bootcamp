@@ -1,4 +1,8 @@
 <%- include('./partials/header') -%>
-    <h1> <%= title %> </h1>
+<h1><%= title %></h1>
+<form action="/compose" method="post">
+  <input type="text" name="newBlog" />
+  <button type="submit">Submit</button>
+</form>
 
 <%- include('./partials/footer') -%>
