@@ -1,5 +1,11 @@
 <%- include('./partials/header') -%>
-    <h1> <%= title %> </h1>
-    <p> <%= p_text %> </p>
+<h1><%= title %></h1>
+<p><%= p_text %></p>
 
-    <%- include('./partials/footer') -%>
+<% for( let index = 0; index < posts.length; index++ ) { %>
+
+<h1><%= posts[index].title %></h1>
+<p><%= posts[index].content.substring(0, 100) + "...";  %> <a href="/posts/ <%= posts[index].title %> ">Read More</a> </p>
+
+<% } %> 
+<%- include('./partials/footer') -%>
