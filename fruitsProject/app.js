@@ -33,6 +33,6 @@ const person = new Person({
   favrouiteFruit: pineapple,
 });
 
-person.save();
-
-mongoose.connection.close();
+person.save(function(err) {
+  console.log('this fires after the `post` hook');
+});
