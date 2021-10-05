@@ -12,7 +12,7 @@ const app = express();
 
 app.set('view engine', 'ejs');
 
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(express.urlencoded({extended: true}));
 app.use(express.static("public"));
 
 // mongoose
@@ -20,9 +20,9 @@ mongoose.connect("mongodb://localhost:27017/todoList", {
   useNewUrlParser: true,
 });
 
-const itemSchema = new mongoose.Schema({
+const itemSchema ={
   task : String
-});
+};
 
 const Items = new mongoose.model("Items",itemSchema)
 
@@ -38,9 +38,13 @@ const item3 = new Items({
  
 const defaultItems = [item1,item3,item3];
  
-Items.insertMany(default )
-
-
+Items.insertMany(defaultItems,  (err)=>{
+  if (err) {
+    console.log(err);
+  }else{
+    console.log("Default Items inserted succesfully. ")
+  }
+});
 
 
 // routes
