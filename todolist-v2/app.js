@@ -1,86 +1,66 @@
-//jshint esversion:6
-
 const express = require("express");
 const bodyParser = require("body-parser");
+const ejs = require("ejs");
 const date = require(__dirname + "/date.js");
-const mongoose = require("mongoose")
-
-
-
+const mongoose = require("mongoose");
 
 const app = express();
+app.use(express.urlencoded({ extended: true }));
+app.set("view engine", "ejs");
+app.use(express.static(__dirname + "/public"));
 
-app.set('view engine', 'ejs');
+app.listen(process.env.PORT || "3000", () => {
+  console.log("Server running at port 3000");
+});
 
-app.use(express.urlencoded({extended: true}));
-app.use(express.static("public"));
-
-// mongoose
+// database shit
 mongoose.connect("mongodb://localhost:27017/todoList", {
   useNewUrlParser: true,
 });
 
-const itemSchema ={
-  task : String
-};
+const itemsSchema = mongoose.Schema({
+  task: String,
+});
 
-const Items = new mongoose.model("Items",itemSchema)
+const Items = mongoose.model("item", itemsSchema);
 
-const item1 = new Items({
-  task: "Welcome to your todo-list"
-})
+const task1 = new Items({
+  task: "Welcome to your todo-list",
+});
+
 const item2 = new Items({
-  task: "Hit the + button to add new task"
-})
+  task: "Hit the + button to add new task",
+});
 const item3 = new Items({
-  task: "<-- button to delete the item"
-})
- 
-const defaultItems = [item1,item3,item3];
- 
-Items.insertMany(defaultItems,  (err)=>{
+  task: "<-- button to delete the item",
+});
+
+const defaultItems = [item1, item3, item3];
+
+Items.insertMany(defaultItems, (err) => {
   if (err) {
     console.log(err);
-  }else{
-    console.log("Default Items inserted succesfully. ")
+  } else {
+    console.log("Default Items inserted succesfully. ");
   }
 });
 
-
-// routes
-app.get("/", function(req, res) {
-
-const day = date.getDate();
-
-  res.render("list", {listTitle: day, newListItems: items});
-
+app.get("/", (req, res) => {
+  let day = date.getDate();
+  res.render("list", { listName: day, item: items });
 });
 
-app.post("/", function(req, res){
-
-  const item = req.body.newItem;
-
+app.post("/", (req, res) => {
+  var newItem = req.body.task;
   if (req.body.list === "Work") {
-    workItems.push(item);
+    workList.push(newItem);
     res.redirect("/work");
   } else {
-    items.push(item);
+    items.push(newItem);
     res.redirect("/");
   }
 });
 
-app.get("/work", function(req,res){
-  res.render("list", {listTitle: "Work List", newListItems: workItems});
+app.get("/work", (req, res) => {
+  res.render("list", { listName: "Work", item: workList });
 });
-
-app.get("/about", function(req, res){
-  res.render("about");
-});
-
-app.listen(3000, function() {
-  console.log("Server started on port 3000");
-});
-
-app.get("/data",(req,res) =>{
-  res.send(Items.find());
-})
