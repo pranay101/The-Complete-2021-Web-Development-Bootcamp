@@ -24,42 +24,74 @@ const itemsSchema = mongoose.Schema({
 
 const Items = mongoose.model("item", itemsSchema);
 
-const task1 = new Items({
-  task: "Welcome to your todo-list",
-});
-
-const item2 = new Items({
-  task: "Hit the + button to add new task",
-});
-const item3 = new Items({
-  task: "<-- button to delete the item",
-});
-
-const defaultItems = [item1, item3, item3];
-
-Items.insertMany(defaultItems, (err) => {
-  if (err) {
-    console.log(err);
-  } else {
-    console.log("Default Items inserted succesfully. ");
-  }
-});
-
 app.get("/", (req, res) => {
-  let day = date.getDate();
-  res.render("list", { listName: day, item: items });
+  let task;
+  Items.find({}, "task", (err, result) => {
+    if (err) {
+      console.log(err);
+    }
+    if (result.length === 0) {
+      const item1 = new Items({
+        task: "Welcome to your todo-list",
+      });
+
+      const item2 = new Items({
+        task: "Hit the + button to add new task",
+      });
+      const item3 = new Items({
+        task: "<-- button to delete the item",
+      });
+
+      const defaultItems = [item1, item3, item3];
+      item1.save((err) => {
+        if (err) {
+          console.log(err);
+        } else {
+          console.log("items inserted successfully");
+        }
+      });
+      item2.save((err) => {
+        if (err) {
+          console.log(err);
+        } else {
+          console.log("items inserted successfully");
+        }
+      });
+      item3.save((err) => {
+        if (err) {
+          console.log(err);
+        } else {
+          console.log("items inserted successfully");
+        }
+      });
+      res.redirect("/");
+    } else {
+      let day = date.getDate();
+      res.render("list", { listName: day, item: result });
+    }
+  });
 });
 
 app.post("/", (req, res) => {
   var newItem = req.body.task;
-  if (req.body.list === "Work") {
-    workList.push(newItem);
-    res.redirect("/work");
-  } else {
-    items.push(newItem);
-    res.redirect("/");
-  }
+  const item = new Items({
+    task: newItem,
+  });
+
+  item.save();
+  res.redirect("/")
+  // if (req.body.list === "Work") {
+  //   workList.push(newItem);
+  //   res.redirect("/work");
+  // } else {
+  //   items.push(newItem);
+  //   res.redirect("/");
+  // }
 });
+
+app.post("/delete",(req,res)=>{
+  console.log(req.body.checkBox)
+})
 
 app.get("/work", (req, res) => {
   res.render("list", { listName: "Work", item: workList });
