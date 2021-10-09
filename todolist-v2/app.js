@@ -80,19 +80,20 @@ app.post("/", (req, res) => {
 
   item.save();
   res.redirect("/")
-  // if (req.body.list === "Work") {
-  //   workList.push(newItem);
-  //   res.redirect("/work");
-  // } else {
-  //   items.push(newItem);
-  //   res.redirect("/");
-  // }
 });
 
 app.post("/delete",(req,res)=>{
-  console.log(req.body.checkBox)
+  const deletethisiD = req.body.checkBox;
+  Items.deleteOne({_id:deletethisiD},(err) =>{
+    if (err) {
+      console.log(err);
+    }else{
+      console.log("Item deleted sucessfully");
+    }
+  })
+  res.redirect("/");
 })
 
-app.get("/work", (req, res) => {
-  res.render("list", { listName: "Work", item: workList });
+app.get("/category/:newRoute", (req, res) => {
+  console.log(req.params.newRoute);
 });
