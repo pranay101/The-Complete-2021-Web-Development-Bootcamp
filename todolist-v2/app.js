@@ -23,6 +23,30 @@ const itemsSchema = mongoose.Schema({
 });
 
 const Items = mongoose.model("item", itemsSchema);
+const item1 = new Items({
+  task: "Welcome to your todo-list",
+});
+
+const item2 = new Items({
+  task: "Hit the + button to add new task",
+});
+const item3 = new Items({
+  task: "<-- button to delete the item",
+});
+
+const defaultItems = [item1, item3, item3];
+
+const listSchema = new mongoose.Schema({
+  name:String,
+  items:itemsSchema
+})
+
+const List = new mongoose.model("list",listSchema)
+
+
+
+
+
 
 app.get("/", (req, res) => {
   let task;
@@ -31,18 +55,7 @@ app.get("/", (req, res) => {
       console.log(err);
     }
     if (result.length === 0) {
-      const item1 = new Items({
-        task: "Welcome to your todo-list",
-      });
-
-      const item2 = new Items({
-        task: "Hit the + button to add new task",
-      });
-      const item3 = new Items({
-        task: "<-- button to delete the item",
-      });
-
-      const defaultItems = [item1, item3, item3];
+      
       item1.save((err) => {
         if (err) {
           console.log(err);
@@ -78,7 +91,7 @@ app.post("/", (req, res) => {
     task: newItem,
   });
 
-  item.save();
+  item.save(); 
   res.redirect("/")
 });
 
@@ -95,5 +108,15 @@ app.post("/delete",(req,res)=>{
 })
 
 app.get("/category/:newRoute", (req, res) => {
-  console.log(req.params.newRoute);
+  const customlistname = req.params.newRoute
+  const list = new List({
+    name:customlistname,
+    items:defaultItems
+  });
+  list.save((err)=>{
+    if(err)
+    console.log(err)
+    else
+    console.log("new route created")
+  });
 });
