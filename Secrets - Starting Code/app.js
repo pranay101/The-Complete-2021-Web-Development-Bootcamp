@@ -33,7 +33,8 @@ app.use(passport.session());
 const userSchema = new mongoose.Schema(
   {
     username: String,
-    password: String
+    password: String,
+    googleId: String,
   })
 
 userSchema.plugin(passportlocalmongoose);
@@ -55,9 +56,15 @@ passport.use(new GoogleStrategy({
   }
 ));
 
-passport.serializeUser(User.serializeUser());
-passport.deserializeUser(User.deserializeUser());
+passport.serializeUser(function(user, done) {
+  done(null, user.id);
+});
 
+passport.deserializeUser(function(id, done) {
+  User.findById(id, function(err, user) {
+    done(err, user);
+  });
+});
 
 app.get("/", (req, res) => {
   res.render("home");
@@ -84,10 +91,10 @@ app.get('/auth/google/callback',
   passport.authenticate('google', { failureRedirect: '/login' }),
   function(req, res) {
     // Successful authentication, redirect home.
-    res.redirect('/');
+    res.redirect('/secret');
   });
 
-  
+
 app.get("/logout", (req, res) => {
   req.logout();
   res.redirect("/")
